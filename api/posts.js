@@ -1,5 +1,5 @@
 const express = require('express');
-const { createTags, createPost, getPostById, updatePost } = require('../db');
+const { getAllPosts, createPost, getPostById, updatePost } = require('../db');
 const postsRouter = express.Router();
 const { requireUser } = require('./utils');
 
@@ -9,7 +9,7 @@ postsRouter.use((req, res, next) => {
     next();
 });
 
-postsRouter.get('/', async (req, res) => {
+postsRouter.get('/', async (req, res, next) => {
     try {
       const allPosts = await getAllPosts();
   
